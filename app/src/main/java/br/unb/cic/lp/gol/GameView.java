@@ -82,7 +82,7 @@ public class GameView {
             System.out.println("Select one of the options: \n \n");
             System.out.println("[1] Make a cell alive");
             System.out.println("[2] Next generation");
-            if (engine.historySize() > 0) System.out.println("[3] Return generations");
+            if (canReturn()) System.out.println("[3] Return generations");
             System.out.println("[4] Auto");
             System.out.println("[5] Ver Estatística e Sair");
 
@@ -196,5 +196,9 @@ public class GameView {
 		for( int i = 0; i < 20; i++ ) {
 			System.out.println("");
 		}
+	}
+
+	public boolean canReturn(){
+		return engine.historySize() > 0;
 	}
 }

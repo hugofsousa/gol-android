@@ -7,6 +7,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,8 @@ public class PerformanceActivity extends AppCompatActivity
     private int width;
     private int height;
 
+    private boolean canReturn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +48,24 @@ public class PerformanceActivity extends AppCompatActivity
             }
         });
 
+        Button returnGenerationButton = (Button) findViewById(R.id.return_generation);
+
+        returnGenerationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(board.canReturn()) controller.returnGenerations(1);
+                else Toast.makeText(PerformanceActivity.this,
+                        "Não é possível retornar para geração anterior", Toast.LENGTH_LONG).show();
+            }
+        });
+
         Button autoButton = (Button) findViewById(R.id.auto);
 
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                board.auto = true;
+//                board.auto = true;
+//                TODO CORRIGIR AUTO
                 controller.nextGeneration();
             }
         });
@@ -82,7 +97,6 @@ public class PerformanceActivity extends AppCompatActivity
         adapter.setCellClickListener(this);
 
         mCellsGrid.setAdapter(adapter);
-
     }
 
     @Override
