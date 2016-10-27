@@ -102,7 +102,7 @@ public class PerformanceActivity extends AppCompatActivity
 
         controller = new GameController();
         statistics = new Statistics();
-        engine = new HighLife(width, height, statistics);
+        engine = new HighLife(height, width, statistics);
         board = new GameView(controller, engine);
 
         board.setListener(this);
@@ -127,7 +127,7 @@ public class PerformanceActivity extends AppCompatActivity
 
     @Override
     public void onCheckCell(int position, boolean checked) {
-        if(checked) controller.makeCellAlive((int)position/width, position%width);
+        if(checked) controller.makeCellAlive(position/width, position%width);
     }
 
     @Override

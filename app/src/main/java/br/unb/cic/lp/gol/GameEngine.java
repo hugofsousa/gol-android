@@ -218,8 +218,8 @@ public abstract class GameEngine {
 
 	public List<Cell> generateCellsList(){
 		List<Cell> cellsList = new ArrayList<>();
-		for(int i = 0 ; i < width ; i++)
-			for (int j = 0 ; j < height ; j++)
+		for(int i = 0 ; i < height ; i++)
+			for (int j = 0 ; j < width ; j++)
 				cellsList.add(cells[i][j]);
 
 		return cellsList;

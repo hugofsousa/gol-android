@@ -49,7 +49,7 @@ public class CellsSizePickerDialog extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        listener.onChooseSize(height.getValue(), width.getValue());
+                        listener.onChooseSize(width.getValue(), height.getValue());
                     }
                 })
                 .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
