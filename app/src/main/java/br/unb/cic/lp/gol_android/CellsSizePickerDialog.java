@@ -33,23 +33,28 @@ public class CellsSizePickerDialog extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View dialog = inflater.inflate(R.layout.cells_size_picker_dialog, null);
-        final NumberPicker width = (NumberPicker) dialog.findViewById(R.id.width_picker);
-        final NumberPicker height = (NumberPicker) dialog.findViewById(R.id.height_picker);
+        final NumberPicker size = (NumberPicker) dialog.findViewById(R.id.size_picker);
+        size.setMinValue(1);
+        size.setMaxValue(MAX_SIZE);
+        size.setValue(10);
 
-        width.setMinValue(1);
-        width.setMaxValue(MAX_SIZE);
-        width.setValue(10);
-
-        height.setMinValue(1);
-        height.setMaxValue(MAX_SIZE);
-        height.setValue(10);
+//        final NumberPicker width = (NumberPicker) dialog.findViewById(R.id.width_picker);
+//        final NumberPicker height = (NumberPicker) dialog.findViewById(R.id.height_picker);
+//
+//        width.setMinValue(1);
+//        width.setMaxValue(MAX_SIZE);
+//        width.setValue(10);
+//
+//        height.setMinValue(1);
+//        height.setMaxValue(MAX_SIZE);
+//        height.setValue(10);
 
         builder.setView(dialog)
                 // Add action buttons
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        listener.onChooseSize(width.getValue(), height.getValue());
+                        listener.onChooseSize(size.getValue(), size.getValue());
                     }
                 })
                 .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
