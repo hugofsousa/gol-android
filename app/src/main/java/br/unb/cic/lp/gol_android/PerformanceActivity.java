@@ -34,8 +34,6 @@ public class PerformanceActivity extends AppCompatActivity
     private int width;
     private int height;
 
-    private boolean canReturn = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,25 +59,29 @@ public class PerformanceActivity extends AppCompatActivity
             }
         });
 
-        Button autoButton = (Button) findViewById(R.id.auto);
+        final Button autoButton = (Button) findViewById(R.id.auto);
 
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                board.auto = true;
-//                TODO CORRIGIR AUTO
-//                controller.nextGeneration();
-                new Timer().schedule(new TimerTask() {
+                board.auto = !board.auto;
 
-                    @Override
-                    public void run() {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                controller.nextGeneration();
-                            }
-                        });
-                    }
-                }, 0, 1000);
+                if(board.auto){
+                    autoButton.setText("PARAR");
+                    final Timer autoTimer = new Timer();
+                    autoTimer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    if(board.auto) controller.nextGeneration();
+                                    else autoTimer.cancel();
+                                }
+                            });
+                        }
+                    }, 0, 1000);
+                }
+                else autoButton.setText("AUTO");
             }
         });
 

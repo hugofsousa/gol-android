@@ -58,12 +58,11 @@ public class GameController {
 	}
 	
 	public void nextGeneration() {
-		do {
+//		do {
 			engine.nextGeneration();
 			board.update();
-//			statistics.display();
 			engine.displayStatistics();
-		} while(board.auto);
+//		} while(board.auto);
 	}
 
 	public void returnGenerations(int quantity) {

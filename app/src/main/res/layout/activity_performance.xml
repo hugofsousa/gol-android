@@ -30,7 +30,7 @@
         <Button android:id="@+id/return_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menorque"
+            android:text="@string/return_generation_button"
             android:layout_gravity="center"/>
         <Button android:id="@+id/auto"
             android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
         <Button android:id="@+id/next_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/maiorque"
+            android:text="@string/next_generation_button"
             android:layout_gravity="center"/>
     </LinearLayout>
 </LinearLayout>
