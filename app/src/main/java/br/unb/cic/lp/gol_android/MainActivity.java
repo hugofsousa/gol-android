@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CellsSizePickerDialog.SizePickerListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,18 @@ public class MainActivity extends AppCompatActivity {
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PerformanceActivity.class);
-                intent.putExtra("WIDTH", 10);
-                intent.putExtra("HEIGHT", 10);
-                startActivity(intent);
+                CellsSizePickerDialog dialog = new CellsSizePickerDialog();
+                dialog.setListener(MainActivity.this);
+                dialog.show(getFragmentManager(), "CellsSizePickerDialog");
             }
         });
+    }
+
+    @Override
+    public void onChooseSize(int width, int height) {
+        Intent intent = new Intent(MainActivity.this, PerformanceActivity.class);
+        intent.putExtra("WIDTH", width);
+        intent.putExtra("HEIGHT", height);
+        startActivity(intent);
     }
 }

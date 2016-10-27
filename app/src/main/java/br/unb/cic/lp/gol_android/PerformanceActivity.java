@@ -76,7 +76,7 @@ public class PerformanceActivity extends AppCompatActivity
 
         controller = new GameController();
         statistics = new Statistics();
-        engine = new HighLife(10, 10, statistics);
+        engine = new HighLife(width, height, statistics);
         board = new GameView(controller, engine);
 
         board.setListener(this);

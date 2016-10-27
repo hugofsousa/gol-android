@@ -16,15 +16,13 @@ import java.util.Calendar;
  * Created by Hugo on 26/10/16.
  */
 
-public class CellsSizePickerDialog {
-}
 
-public class MonthYearPickerDialog extends DialogFragment {
+public class CellsSizePickerDialog extends DialogFragment {
 
-    private static final int MAX_YEAR = 2099;
-    private DatePickerDialog.OnDateSetListener listener;
+    private static final int MAX_SIZE = 15;
+    private SizePickerListener listener;
 
-    public void setListener(DatePickerDialog.OnDateSetListener listener) {
+    public void setListener(SizePickerListener listener) {
         this.listener = listener;
     }
 
@@ -34,38 +32,35 @@ public class MonthYearPickerDialog extends DialogFragment {
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        Calendar cal = Calendar.getInstance();
+        View dialog = inflater.inflate(R.layout.cells_size_picker_dialog, null);
+        final NumberPicker width = (NumberPicker) dialog.findViewById(R.id.width_picker);
+        final NumberPicker height = (NumberPicker) dialog.findViewById(R.id.height_picker);
 
-        Bundle bundle = getArguments();
-        cal.set(Calendar.YEAR, bundle.getInt("YEAR"));
-        cal.set(Calendar.MONTH, bundle.getInt("MONTH"));
+        width.setMinValue(1);
+        width.setMaxValue(MAX_SIZE);
+        width.setValue(10);
 
-        View dialog = inflater.inflate(R.layout.date_picker_dialog, null);
-        final NumberPicker monthPicker = (NumberPicker) dialog.findViewById(R.id.picker_month);
-        final NumberPicker yearPicker = (NumberPicker) dialog.findViewById(R.id.picker_year);
-
-        monthPicker.setMinValue(1);
-        monthPicker.setMaxValue(12);
-        monthPicker.setValue(cal.get(Calendar.MONTH) + 1);
-
-        int year = cal.get(Calendar.YEAR);
-        yearPicker.setMinValue(year);
-        yearPicker.setMaxValue(MAX_YEAR);
-        yearPicker.setValue(year);
+        height.setMinValue(1);
+        height.setMaxValue(MAX_SIZE);
+        height.setValue(10);
 
         builder.setView(dialog)
                 // Add action buttons
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        listener.onDateSet(null, yearPicker.getValue(), monthPicker.getValue(), 0);
+                        listener.onChooseSize(height.getValue(), width.getValue());
                     }
                 })
                 .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        MonthYearPickerDialog.this.getDialog().cancel();
+                        CellsSizePickerDialog.this.getDialog().cancel();
                     }
                 });
         return builder.create();
+    }
+
+    public interface SizePickerListener{
+        void onChooseSize(int width, int height);
     }
 }
