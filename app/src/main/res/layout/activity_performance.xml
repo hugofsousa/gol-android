@@ -26,7 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
         <Button android:id="@+id/return_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,12 +37,26 @@
         <Button android:id="@+id/auto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="AUTO"
             android:layout_gravity="center"/>
         <Button android:id="@+id/next_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/next_generation_button"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+        <Button android:id="@+id/finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finalizar"
             android:layout_gravity="center"/>
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,8 @@
 package br.unb.cic.lp.gol_android;
 
+import android.content.DialogInterface;
 import android.graphics.Point;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -38,6 +40,15 @@ public class PerformanceActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance);
+
+        Button finishButton = (Button) findViewById(R.id.finish);
+
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         Button nextGenerationButton = (Button) findViewById(R.id.next_generation);
 
@@ -122,5 +133,25 @@ public class PerformanceActivity extends AppCompatActivity
     @Override
     public void gameViewUpdate() {
         ((CellsGridAdapter) (mCellsGrid.getAdapter())).setCells(engine.generateCellsList());
+    }
+
+    @Override
+    public void onBackPressed() {
+        displayStatistics(statistics, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                PerformanceActivity.super.onBackPressed();
+            }
+        });
+    }
+
+    public void displayStatistics(Statistics s, DialogInterface.OnClickListener okListener){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("ESTATÍSTICAS");
+        builder.setMessage("Revived cells: " + statistics.getRevivedCells() +
+                "\nKilled cells: " + statistics.getKilledCells());
+        builder.setNeutralButton("OK", okListener);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
