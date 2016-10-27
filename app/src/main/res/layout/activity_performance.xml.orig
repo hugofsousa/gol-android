@@ -30,7 +30,11 @@
         <Button android:id="@+id/return_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
+            android:text="Voltar"
+=======
             android:text="@string/menorque"
+>>>>>>> 32e3c619ada4194c550a052dfb675a65982de492
             android:layout_gravity="center"/>
         <Button android:id="@+id/auto"
             android:layout_width="wrap_content"
@@ -40,7 +44,11 @@
         <Button android:id="@+id/next_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
+            android:text="Próxima"
+=======
             android:text="@string/maiorque"
+>>>>>>> 32e3c619ada4194c550a052dfb675a65982de492
             android:layout_gravity="center"/>
     </LinearLayout>
 </LinearLayout>

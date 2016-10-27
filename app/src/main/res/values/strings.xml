@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">gol-android</string>
+    <string name="menorque"><![CDATA[<<<]]></string>
+    <string name="maiorque"><![CDATA[>>>]]></string>
 </resources>

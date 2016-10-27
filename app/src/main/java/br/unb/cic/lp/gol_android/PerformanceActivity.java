@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import br.unb.cic.lp.gol.Cell;
 import br.unb.cic.lp.gol.GameController;
@@ -66,7 +68,18 @@ public class PerformanceActivity extends AppCompatActivity
             public void onClick(View view) {
 //                board.auto = true;
 //                TODO CORRIGIR AUTO
-                controller.nextGeneration();
+//                controller.nextGeneration();
+                new Timer().schedule(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                controller.nextGeneration();
+                            }
+                        });
+                    }
+                }, 0, 1000);
             }
         });
 
