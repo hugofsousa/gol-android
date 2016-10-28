@@ -25,6 +25,10 @@ public abstract class GameEngine {
 	private List<Cell[][]> historyCells = new ArrayList<>();
 	private List<Statistics> historyStatistics = new ArrayList<>();
 
+	public final static int CONWAY = 0;
+	public final static int HIGH_LIFE = 1;
+	public final static int LIVE_FREE_OR_DIE = 2;
+
 	/**
 	 * Construtor da classe Environment.
 	 * 

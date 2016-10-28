@@ -21,7 +21,9 @@ import br.unb.cic.lp.gol.GameController;
 import br.unb.cic.lp.gol.GameEngine;
 import br.unb.cic.lp.gol.GameView;
 import br.unb.cic.lp.gol.Statistics;
+import br.unb.cic.lp.regras.Conway;
 import br.unb.cic.lp.regras.HighLife;
+import br.unb.cic.lp.regras.LiveFreeOrDie;
 
 public class PerformanceActivity extends AppCompatActivity
         implements CellsGridAdapter.CellClickListener, GameViewListener {
@@ -102,7 +104,17 @@ public class PerformanceActivity extends AppCompatActivity
 
         controller = new GameController();
         statistics = new Statistics();
-        engine = new HighLife(height, width, statistics);
+
+        switch (bundle.getInt("RULE")){
+            case GameEngine.HIGH_LIFE:
+                engine = new HighLife(height, width, statistics);
+                break;
+            case GameEngine.LIVE_FREE_OR_DIE:
+                engine = new LiveFreeOrDie(height, width, statistics);
+                break;
+            default:
+                engine = new Conway(height, width, statistics);
+        }
         board = new GameView(controller, engine);
 
         board.setListener(this);
@@ -137,6 +149,7 @@ public class PerformanceActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        board.auto = false;
         displayStatistics(statistics, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
